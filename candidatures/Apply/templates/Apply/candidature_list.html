@@ -1,0 +1,53 @@
+{% extends "Apply/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter({sortList: [[1,0],[2,0]]}); 
+    } 
+); 
+</script>
+
+
+<div class="vcontainer">
+<h1>Liste des Candidatures</h1>
+
+<br><br>
+
+<table id="myTable">
+<thead>
+<tr>
+<th style="width:20px;">id</th>
+<th style="width:20px;">Etudiant</th>
+<th style="width:150px;">Date de la demande</th>
+<th style="width:150px;">Demande</th>
+<th style="width:100px;">Réponse</th>
+<th style="width:100px;">Date de la réponse</th>
+<th style="width:250px;">Responsable</th>
+<th style="width:150px;">Confirmation</th>
+</tr>
+</thead>
+<tbody>
+{% for item in object_list %}
+<tr>
+  	<td style="width:20px;"> {{ item.id }}</td>
+  	<td style="width:150px;"><a href="{% url 'candidature_detail' pk=item.id %}">{{ item.etudiant}}</a></td>
+    <td style="width:20px;"> {{ item.date_demande}}</td>
+  	<td style="width:150px;">{{ item.demande }}</td>
+  	<td style="width:100px;">{{ item.reponse}}</td>
+  	<td style="width:100px;">{{ item.date_reponse}}</td>
+  	<td style="width:250px;">{{ item.reponse_donnee_par }}</td>
+     <td style="width:150px;">{{ item.confirmation}}</td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+
+</div>
+
+
+<br><br>
+<bouton><a href="{% url "etudiant_new" %}">nouvelle candidature</a></bouton>
+{%endblock content%}

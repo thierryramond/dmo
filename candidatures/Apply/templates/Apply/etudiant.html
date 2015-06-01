@@ -1,0 +1,85 @@
+{% extends "Apply/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter({sortList: [[0,0],]}); 
+    } 
+); 
+</script>
+
+<div id="vcontainer">
+
+<h1> Récapitulatif pour : {{ etudiant }}</h1>
+
+<br><br>
+
+<table>
+<thead>
+<tr>
+<th style="width:20px;">id</th>
+<th style="width:150px;">Nom</th>
+<th style="width:150px;">Prénom</th>
+<th style="width:150px;">Né(e) le</th>
+<th style="width:250px;">Adresse</th>
+<th style="width:120px;">Téléphone</th>
+<th style="width:250px;">eMail</th>
+<th style="width:150px;">Vient de </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  	<td style="width:20px;"> {{ etudiant.id }}</td>
+  	<td style="width:150px;"><a href="{% url 'etudiant_edit' pk=etudiant.id %}">{{ etudiant.nom }}</a></td>
+  	<td style="width:150px;">{{ etudiant.prenom }}</td>
+  	<td style="width:150px;">{{ etudiant.date_naissance}}</td>
+  	<td style="width:250px;">{{ etudiant.adresse}}</td>
+  	<td style="width:120px;">{{ etudiant.telephone }}</td>
+  	<td style="width:250px;">{{ etudiant.email }}</td>
+    <td style="width:150px;">{{ etudiant.vient_de}}</td>
+  </tr>
+</tbody>
+</table>
+<br><br>
+</div>
+<div id="vcontainer">
+<h1> Cursus </h1>
+<br>
+
+<table id="myTable">
+<thead>
+<tr>
+	<th>Année</th>
+	<th>Etablissement</th>
+	<th>Formation</th>
+	<th>Résultat</th>
+</tr>	
+</thead>
+<tbody>
+
+
+{% for annee in etudiant.get_annee %}
+<tr>
+	<td style="width:60px;text-align:center;">{{ annee.millesime }}</td>
+	<td style="width:200px;text-align:left;">{{ annee.etablissement }}</td>
+	<td style="width:250px;text-align:left;"> {{ annee.formation }}</td>
+	<td style="width:120px;text-align:center;">{{ annee.resultat }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+
+
+<br><br>
+<bouton><a href="{% url "etudiant_new" %}">nouvel etudiant</a></bouton>
+<bouton><a href="{% url "etudiant_edit" pk=etudiant.id %}">modifier cet étudiant</a></bouton>
+<bouton><a href="{% url "etudiant_list" %}">retour à la liste</a></bouton>
+<bouton_rouge><a href="{% url "etudiant_delete"  pk=etudiant.id %}">effacer cet étudiant</a></bouton_rouge>
+
+</div>
+
+{%endblock content%}

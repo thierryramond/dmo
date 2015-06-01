@@ -1,0 +1,45 @@
+{% extends "Apply/base.html" %}
+
+{% block content %}
+
+{% if Etudiant.id %}
+<h1>Edit {{Etudiant.prenom}} {{Etudiant.nom}}</h1>
+{% else %}
+<h1>Nouvel Etudiant</h1>
+{% endif %}
+
+<form action="{{ action }}" method="POST">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <ul>
+      {% for error in form.non_field_errors %}
+        <li style="color:red;">{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <ul>
+  {% for field in form %}
+  <div id="{{ field.auto_id }}_container">
+    {{ field.help_text }}
+    <div>
+      <li>{{ field.label_tag }}{{ field }}</li>
+    </div>
+    <div id="{{ field.auto_id }}_errors">
+      {{ field.errors }}
+    </div>
+  </div>
+  {% endfor %}
+  </ul>
+
+  <input id="save_etudiant" type="submit" value="Save" />
+</form>
+
+{% if etudiant.id %}
+<bouton><a href="{% url "etudiant_edit" pk=etudiant.id %}">Edit</a></bouton>
+<bouton_rouge><a href="{% url "etudiant_delete" pk=etudiant.id %}">Delete</a></bouton_rouge>
+{% endif %}
+
+<bouton><a href="{% url "etudiant_list" %}">back to list</a></bouton>
+
+{% endblock %}
+

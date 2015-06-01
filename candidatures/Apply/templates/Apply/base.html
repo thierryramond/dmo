@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Liste des Candidats</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'Apply/style.css' %}"/>
+	<script type="text/javascript" src="{% static "Apply/js/jquery-2.1.4.js" %}"></script>
+	<script type="text/javascript" src="{% static "Apply/js/jquery.tablesorter.min.js" %}"></script> 
+
+</head>
+
+
+<body>
+
+
+<div class="hcontainer">
+<logo><img src=" {% static 'Apply/images/dmo.png' %}"  width="200"></logo>
+<titre>Département de Mathématiques d'Orsay
+<br>
+Base de données des Candidatures
+</titre>
+</div>
+
+{% block content %}
+{% endblock content %}
+
+</body>
+</html>

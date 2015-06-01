@@ -1,0 +1,16 @@
+{% extends "Apply/base.html" %}
+
+{% block content %}
+
+<h1>Delete Etudiant</h1>
+
+<p>Are you sure you want to delete the etudiant {{ etudiant }}?</p>
+
+<form action="{% url "etudiant_delete" pk=etudiant.id %}" method="POST">
+  {% csrf_token %}
+
+  <input type="submit" value="Yes, delete." />
+  <a href="{% url "etudiant_list" %}">No, cancel.</a>
+</form>
+
+{% endblock %}

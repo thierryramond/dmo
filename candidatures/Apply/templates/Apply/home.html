@@ -1,0 +1,15 @@
+{% extends "Apply/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+
+<div class="vcontainer">
+<h1>Bienvenue!</h1>
+<h2>Que voulez-vous faire?</h2>
+<ul>
+<li><a href="{% url 'candidature_list' %}">Consulter des candidatures?</a></li>
+<li><a href="{% url 'candidature_new' %}">Ajouter une candidature?</a></li>
+</ul>
+
+</div>
+{% endblock content%}
