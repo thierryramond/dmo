@@ -1,7 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 
-
-
 body
 {
     background-color: #fff;/*rgba(20,20,20,1);*/	
@@ -13,6 +11,16 @@ body
 	z-index: 1000;
 } 
 
+.parent{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: space-around;
+}
+
+.child{
+
+}
 
 .vcontainer{
 	display: flex;
@@ -24,9 +32,47 @@ body
 .hcontainer{
 	margin-top: 2em;
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-flow: row nowrap;
+	justify-content: space-around;
 	align-items: flex-start;
+}
+
+table {	
+	flex-flow: column nowrap;
+    border-collapse: collapse;
+    /*align-content: space-between;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;*/
+}
+
+
+thead {
+    align-content: center;
+    border-color: inherit;
+}
+
+tbody {
+    /*display: table-row-group;*/
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+td{
+	border: 1px solid #666;
+	width: 140px;
+	height: 2em;
+	text-align: left;
+	padding-left:10px;
+}
+
+
+th{
+	border: 1px solid #666;
+	width: 100px;
+	font-style: bold;
+	color:#333;
+	background-color: #0CA;
 }
 
 a
@@ -66,8 +112,8 @@ logo{
 titre{
 	display:flex;
 	flex-direction:column;
-	margin-top :1em;
-	#margin-bottom: 3em;
+	/*margin-top :1em;
+	#margin-bottom: 3em;*/
 	font-size: 2em;
 	color: rgba(0,0,0,1)
 }
@@ -150,41 +196,9 @@ h2
 	font-weight: normal;
 }
 
-table {
-	align-content: space-between;
-    border-collapse: collapse;
-    margin: auto;
-    /*margin-left: 20px;
-    margin-right: 20px;*/
-}
-
-thead {
-    align-content: center;
-    border-color: inherit;
-}
-
-tbody {
-    /*display: table-row-group;*/
-    vertical-align: middle;
-    border-color: inherit;
-}
-
-td{
-	border: 1px solid #666;
-	width: 140px;
-	height: 2em;
-	text-align: left;
-	padding-left:10px;
-}
 
 
-th{
-	border: 1px solid #666;
-	width: 100px;
-	font-style: bold;
-	color:#333;
-	background-color: #0CA;
-}
+
 
 th a{
 	text-decoration: none;

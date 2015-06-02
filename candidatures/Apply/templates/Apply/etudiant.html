@@ -10,45 +10,45 @@ $(document).ready(function()
 ); 
 </script>
 
-<div id="vcontainer">
+
 
 <h1> Récapitulatif pour : {{ etudiant }}</h1>
 
-<br><br>
 
+
+
+<div class="hcontainer">
+
+<div class="child">
 <table>
-<thead>
 <tr>
-<th style="width:20px;">id</th>
-<th style="width:150px;">Nom</th>
-<th style="width:150px;">Prénom</th>
-<th style="width:150px;">Né(e) le</th>
-<th style="width:250px;">Adresse</th>
-<th style="width:120px;">Téléphone</th>
-<th style="width:250px;">eMail</th>
-<th style="width:150px;">Vient de </th>
+<th style="width:100px;">id</th><td style="width:20px;"> {{ etudiant.id }}</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-  	<td style="width:20px;"> {{ etudiant.id }}</td>
-  	<td style="width:150px;"><a href="{% url 'etudiant_edit' pk=etudiant.id %}">{{ etudiant.nom }}</a></td>
-  	<td style="width:150px;">{{ etudiant.prenom }}</td>
-  	<td style="width:150px;">{{ etudiant.date_naissance}}</td>
-  	<td style="width:250px;">{{ etudiant.adresse}}</td>
-  	<td style="width:120px;">{{ etudiant.telephone }}</td>
-  	<td style="width:250px;">{{ etudiant.email }}</td>
-    <td style="width:150px;">{{ etudiant.vient_de}}</td>
-  </tr>
-</tbody>
+<th style="width:100px;">Nom</th><td style="width:150px;"><a href="{% url 'etudiant_edit' pk=etudiant.id %}">{{ etudiant.nom }}</a></td>
+</tr>
+<tr>
+<th style="width:100px;">Prénom</th>  <td style="width:150px;">{{ etudiant.prenom }}</td>
+</tr>
+<tr>
+<th style="width:100px;">Né(e) le</th><td style="width:150px;">{{ etudiant.date_naissance}}</td>
+</tr>
+<tr>
+<th style="width:100px;">Adresse</th><td style="width:250px;">{{ etudiant.adresse}}</td>
+</tr>
+<tr>
+<th style="width:100px;">Téléphone</th> <td style="width:120px;">{{ etudiant.telephone }}</td>
+</tr>
+<tr>
+<th style="width:100px;">eMail</th><td style="width:250px;">{{ etudiant.email }}</td>
+</tr>
+<tr>
+<th style="width:100px;">Vient de </th> <td style="width:150px;">{{ etudiant.vient_de}}</td>
+</tr>
 </table>
-<br><br>
 </div>
-<div id="vcontainer">
-<h1> Cursus </h1>
-<br>
-
-<table id="myTable">
+<div class="child">
+<table  id="myTable">
 <thead>
 <tr>
 	<th>Année</th>
@@ -58,8 +58,6 @@ $(document).ready(function()
 </tr>	
 </thead>
 <tbody>
-
-
 {% for annee in etudiant.get_annee %}
 <tr>
 	<td style="width:60px;text-align:center;">{{ annee.millesime }}</td>
@@ -70,7 +68,8 @@ $(document).ready(function()
 {% endfor %}
 </tbody>
 </table>
-
+</div>
+</div>
 
 
 

@@ -14,6 +14,7 @@ class Etudiant(models.Model):
     adresse = models.CharField(db_column='adresse', max_length=100, blank=True, null=True)
     email = models.EmailField(db_column='email', unique=True, blank=True, null=True)
     telephone = models.CharField(db_column='telephone', max_length=100, blank=True, null=True)
+    carte_etudiant = models.CharField(db_column='carte_etudiant', max_length=10, blank=True, null=True)
     vient_de = models.CharField(db_column='vient_de', max_length=150, blank=True, null=True)
     
     class Meta:
@@ -36,7 +37,7 @@ class Candidature(models.Model):
     confirmation = models.CharField(db_column='confirmation',max_length=50, blank=True, null=True,choices=specialite_list)
     reponse_donnee_par = models.CharField(db_column='reponse_donnee_par',max_length=50, blank=True, null=True,choices=responsable_list)
     date_reponse = models.DateField(db_column='date_reponse', blank=True, null=True)
-
+    numero_OPI = models.CharField(db_column='numero_OPI', max_length=10, blank=True, null=True)
 
 class Annee(models.Model):
     etudiant = models.ForeignKey(Etudiant)
