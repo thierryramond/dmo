@@ -31,15 +31,15 @@
   {% endfor %}
   </ul>
 
-  <input id="save_etudiant" type="submit" value="Save" />
+  <input id="save_candidature" type="submit" value="Save" />
 </form>
 
-{% if etudiant.id %}
-<bouton><a href="{% url "etudiant_edit" pk=etudiant.id %}">Edit</a></bouton>
-<bouton_rouge><a href="{% url "etudiant_delete" pk=etudiant.id %}">Delete</a></bouton_rouge>
+{% if candidature.id %}
+<bouton><a href="{% url "etudiant_edit" pk=candidature.id %}">Edit</a></bouton>
+<bouton_rouge><a href="{% url "etudiant_delete" pk=candidature.id %}">Delete</a></bouton_rouge>
 {% endif %}
 
-<bouton><a href="{% url "etudiant_list" %}">back to list</a></bouton>
+<bouton><a href="{% url "candidature_list" %}">back to list</a></bouton>
 
 {% endblock %}
 

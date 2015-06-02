@@ -1,0 +1,17 @@
+{% extends "Apply/base.html" %}
+
+{% block content %}
+
+<h1>Recherche Etudiant</h1>
+
+<p></p>
+
+<form action="{% url "etudiant_search" %}" method="POST">
+  	{% csrf_token %}
+  	<table>
+	{{form.as_table}}
+	</table>
+	<bouton><input type="submit" value="rechercher" /></bouton>
+</form>
+
+{% endblock %}

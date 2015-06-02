@@ -13,41 +13,43 @@ $(document).ready(function()
 
 <div class="vcontainer">
 <h1>Liste des Etudiants</h1>
-
+{{maintenant}}
 <br><br>
 
 <table id="myTable">
 <thead>
 <tr>
-<th style="width:20px;">id</th>
 <th style="width:20px;">Civilité</th>
 <th style="width:150px;">Nom</th>
 <th style="width:150px;">Prénom</th>
 <th style="width:130px;">Né(e) le</th>
 <th style="width:300px;">Adresse</th>
 <th style="width:250px;">eMail</th>
+<th style="width:150px;">Téléphone</th>
 <th style="width:150px;">Vient de </th>
 </tr>
 </thead>
 <tbody>
 {% for item in object_list %}
 <tr>
-  	<td style="width:20px;"> {{ item.id }}</td>
     <td style="width:20px;"> {{ item.genre }}</td>
   	<td style="width:150px;"><a href="{% url 'etudiant_detail' pk=item.id %}">{{ item.nom }}</a></td>
   	<td style="width:150px;">{{ item.prenom }}</td>
-  	<td style="width:130px;text-align:center">{{ item.date_naissance}}</td>
+  	<td style="width:130px;">{{ item.date_naissance}}</td>
   	<td style="width:300px;">{{ item.adresse}}</td>
   	<td style="width:250px;">{{ item.email }}</td>
-     <td style="width:150px;">{{ item.vient_de}}</td>
+    <td style="width:150px;">{{ item.telephone }}</td>
+    <td style="width:150px;">{{ item.vient_de}}</td>
   </tr>
 {% endfor %}
 </tbody>
 </table>
-
 </div>
 
-
 <br><br>
+<div class="hcontainer">
 <bouton><a href="{% url "etudiant_new" %}">Nouvel étudiant</a></bouton>
+<bouton><a href="{% url "home" %}">Accueil</a></bouton>
+</div>
+
 {%endblock content%}

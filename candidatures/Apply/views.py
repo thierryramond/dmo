@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView, FormView
 
 from Apply.models import Etudiant, Candidature
-from Apply.forms import EtudiantForm, CandidatureForm
+from Apply.forms import EtudiantForm, CandidatureForm, PortailForm
 
 #-----------------------------------------------------------------------------
 #  index
@@ -28,6 +28,22 @@ class EtudiantListView(ListView):
 	model = Etudiant
 	template_name = 'Apply/etudiant_list.html'
 	ordering = ('nom','prenom')
+
+	def get_context_data(self, **kwargs):
+		context = super(EtudiantListView, self).get_context_data(**kwargs)
+		context['maintenant'] = timezone.now()
+		return context
+
+
+
+#-----------------------------------------------------------------------------
+#  Etudiant Portail
+
+class EtudiantPortailView(FormView):
+	template_name = 'Apply/etudiant_search.html'
+	form_class = PortailForm
+	
+
 
 #-----------------------------------------------------------------------------
 #  Etudiant create
@@ -86,6 +102,12 @@ class EtudiantView(DetailView):
 	model = Etudiant
 	template_name = 'Apply/etudiant.html'
 
+	def get_context_data(self, **kwargs):
+		context = super(EtudiantView, self).get_context_data(**kwargs)
+		context['maintenant'] = timezone.now()
+		return context
+
+
 
 #-----------------------------------------------------------------------------
 #  Candidature List 
@@ -128,4 +150,19 @@ class CandidatureCreateView(CreateView):
 
 		return HttpResponseRedirect(reverse_lazy('candidature_list'))
 
+#-----------------------------------------------------------------------------
+#  Candidature update
+
+class CandidatureUpdateView(UpdateView):
+	model = Candidature
+	template_name = 'Apply/candidature_edit.html'
+	form_class = CandidatureForm
+
+	def get_success_url(self):
+		return reverse('candidature_list')
+
+	def get_context_data(self, **kwargs):
+		context = super(CandidatureUpdateView, self).get_context_data(**kwargs)
+		context['action'] = reverse('candidature_edit', kwargs={'pk': self.get_object().id})
+		return context
 

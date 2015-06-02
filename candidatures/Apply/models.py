@@ -14,7 +14,7 @@ class Etudiant(models.Model):
     adresse = models.CharField(db_column='adresse', max_length=100, blank=True, null=True)
     email = models.EmailField(db_column='email', unique=True, blank=True, null=True)
     telephone = models.CharField(db_column='telephone', max_length=100, blank=True, null=True)
-    carte_etudiant = models.CharField(db_column='carte_etudiant', max_length=10, blank=True, null=True)
+    carte_etudiant = models.CharField(db_column='carte_etudiant',unique=True, max_length=10, blank=True, null=True)
     vient_de = models.CharField(db_column='vient_de', max_length=150, blank=True, null=True)
     
     class Meta:

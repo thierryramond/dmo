@@ -2,45 +2,44 @@
 {% block content %}
 {% load staticfiles %}
 
-
-
 <h1>Candidature {{ candidature.id }}</h1>
 
-<br><br>
-
-<table id="myTable">
+<div class="vcontainer">
+<table>
 <thead>
-<tr>
-<th style="width:20px;">id</th>
-<th style="width:20px;">Etudiant</th>
-<th style="width:150px;">Date de la demande</th>
-<th style="width:150px;">Demande</th>
-<th style="width:100px;">Réponse</th>
-<th style="width:100px;">Date de la réponse</th>
-<th style="width:250px;">Responsable</th>
-<th style="width:150px;">Confirmation</th>
-</tr>
+	<tr>
+	<th style="width:20px;">id</th>
+	<th style="width:20px;">Numero OPI</th>
+	<th style="width:20px;">Etudiant</th>
+	<th style="width:150px;">Date de la demande</th>
+	<th style="width:150px;">Demande</th>
+	<th style="width:100px;">Réponse</th>
+	<th style="width:100px;">Date de la réponse</th>
+	<th style="width:250px;">Responsable</th>
+	<th style="width:150px;">Confirmation</th>
+	</tr>
 </thead>
 <tbody>
-<tr>
+	<tr>
   	<td style="width:20px;"> {{ candidature.id }}</td>
+  	<td style="width:20px;"> {{ candidature.numero_OPI }}</td>
   	<td style="width:150px;"><a href="{% url 'etudiant_detail' pk=candidature.etudiant_id %}">{{ candidature.etudiant}}</a></td>
     <td style="width:20px;"> {{ candidature.date_demande}}</td>
   	<td style="width:150px;">{{ candidature.demande }}</td>
   	<td style="width:100px;">{{ candidature.reponse}}</td>
   	<td style="width:100px;">{{ candidature.date_reponse}}</td>
   	<td style="width:250px;">{{ candidature.reponse_donnee_par }}</td>
-     <td style="width:150px;">{{ candidature.confirmation}}</td>
-  </tr>
+    <td style="width:150px;">{{ candidature.confirmation}}</td>
+  	</tr>
 </tbody>
 </table>
 
 </div>
 
-
 <br><br>
-<div id="vcontainer">
-<bouton><a href="{% url "candidature_list" %}">back to candidature list</a></bouton>
-<bouton><a href="{% url "etudiant_new" %}">nouvelle candidature</a></bouton>
+<div class="hcontainer">
+<bouton><a href="{% url "candidature_edit" pk=candidature.id %}">Modifier</a></bouton>
+<bouton><a href="{% url "candidature_list" %}">Retour à la liste</a></bouton>
+<bouton><a href="{% url "etudiant_new" %}">Nouvelle candidature</a></bouton>
 </div>
 {%endblock content%}

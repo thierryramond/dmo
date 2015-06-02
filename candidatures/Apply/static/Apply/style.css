@@ -4,18 +4,48 @@ body
 {
     background-color: #fff;/*rgba(20,20,20,1);*/	
    	font: 16px/1.2 'Oxygen',sans-serif;
-   	color: #111;
+   	color: #555;
 	margin: 0px;
 	min-width:1000px;
 	min-height: 1300px;
 	z-index: 1000;
 } 
 
+/* Entete */
+
+.entete{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo{
+	margin: 1em;
+	opacity: 1;
+}
+
+.titre{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 1.6em;
+	color: rgba(30,30,30,1);
+}
+
+.titre p{
+	margin-top: -4em;
+	margin-bottom:4em;
+}
+
+/* conteneurs */
+
 .parent{
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-around;
-	align-items: space-around;
+	align-items: flex-start;
 }
 
 .child{
@@ -30,22 +60,21 @@ body
 }
 
 .hcontainer{
-	margin-top: 2em;
 	display: flex;
+	margin-top: 2em;
 	flex-flow: row nowrap;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: flex-start;
 }
 
+/* tables */
+
 table {	
-	flex-flow: column nowrap;
     border-collapse: collapse;
-    /*align-content: space-between;
     margin: auto;
     margin-left: 20px;
-    margin-right: 20px;*/
+    margin-right: 20px;
 }
-
 
 thead {
     align-content: center;
@@ -66,21 +95,13 @@ td{
 	padding-left:10px;
 }
 
-
 th{
 	border: 1px solid #666;
 	width: 100px;
+	height: 2em;
 	font-style: bold;
 	color:#333;
 	background-color: #0CA;
-}
-
-a
-{
-	color: rgba(100,100,100,1);
-	text-decoration: none;
-	font-style: bold;
-	
 }
 
 td a
@@ -91,6 +112,32 @@ td a
 	
 }
 
+
+/* boutons */
+
+bouton a{
+	height: 22px;
+	margin: 20px;
+	padding: 10px;
+	font-style:  italic;
+	text-decoration: none;
+	background-color: rgba(0, 68, 136,1);
+	color: rgba(255,255,255,1);
+}
+
+bouton_rouge a{
+	height: 22px;
+	margin: 20px;
+	padding: 10px;
+	font-style:  italic;
+	text-decoration: none;
+	background-color: rgba(200, 0, 0, 1);
+	color: rgba(255,255,255,1);
+}
+
+/* reste */
+
+
 .on{
 	color: rgba(255,255,255,1);
 }
@@ -100,35 +147,12 @@ td a
 }
 
 
-
-
-logo{
-	flex-direction:row;
-	margin: 1em;
-	opacity: 1;
-}
-
-
-titre{
-	display:flex;
-	flex-direction:column;
-	/*margin-top :1em;
-	#margin-bottom: 3em;*/
-	font-size: 2em;
-	color: rgba(0,0,0,1)
-}
-
-
-bouton a{
-	justify-content: flex-start;
-	flex-wrap:wrap;
-	height: 22px;
-	margin: 20px;
-	padding: 10px;
-	font-style:  italic;
+a
+{
+	color: rgba(100,100,100,1);
 	text-decoration: none;
-	background-color: rgba(0, 68, 136,1);
-	color: rgba(255,255,255,1);
+	font-style: bold;
+	
 }
 
 chapeau{
@@ -266,25 +290,7 @@ input[type=submit]{
 	color: rgba(255,255,255,1);
 }
 
-bouton a{
-	justify-content: flex-start;
-	height: 22px;
-	margin: 20px;
-	padding: 10px;
-	font-style:  italic;
-	text-decoration: none;
-	background-color: rgba(0, 68, 136,1);
-	color: rgba(255,255,255,1);
-}
 
-bouton_rouge a{
-	display: inline-block;
-	height: 22px;
-	margin: 20px;
-	padding: 10px;
-	background-color: rgba(200, 0, 0, 1);
-	color: rgba(255,255,255,1);
-}
 
 
 centrer{
