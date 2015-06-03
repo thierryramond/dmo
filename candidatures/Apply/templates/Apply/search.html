@@ -1,0 +1,10 @@
+{% extends "../Apply/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<form action="{% url 'watson:search' %}">
+    <input name="q" value="{{request.GET.q}}">
+    <input type="submit" value="Go">
+</form>
+
+{% end content %}
