@@ -1,11 +1,11 @@
 from django.shortcuts import render,render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView, FormView
 
 from Apply.models import Etudiant, Candidature
-from Apply.forms import EtudiantForm, CandidatureForm, PortailForm
+from Apply.forms import EtudiantForm, CandidatureForm, ShortEtudiantForm
 
 #-----------------------------------------------------------------------------
 #  index
@@ -13,12 +13,6 @@ from Apply.forms import EtudiantForm, CandidatureForm, PortailForm
 def home(request):
 	return render(request,'Apply/home.html',{'datetime': timezone.now()})
 
-
-#-----------------------------------------------------------------------------
-#  search Etudiant
-
-
-### A FAIRE!
 
 
 #-----------------------------------------------------------------------------
@@ -32,18 +26,48 @@ class EtudiantListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(EtudiantListView, self).get_context_data(**kwargs)
 		context['maintenant'] = timezone.now()
+		context['titre'] = 'Liste des étudiants'
 		return context
 
 
 
 #-----------------------------------------------------------------------------
-#  Etudiant Portail
+#  Etudiant search
 
-class EtudiantPortailView(FormView):
+class EtudiantSearchView(FormView):
 	template_name = 'Apply/etudiant_search.html'
-	form_class = PortailForm
-	
+	form_class = EtudiantForm
+	success_url = reverse_lazy("etudiant_list")
 
+	def form_valid(self,form):
+		etudiant = Etudiant(
+			genre = form.cleaned_data['genre'],
+			nom = form.cleaned_data['nom'],
+			prenom = form.cleaned_data['prenom'],
+			date_naissance =  form.cleaned_data['date_naissance'],
+			adresse = form.cleaned_data['adresse'],
+			email = form.cleaned_data['email'],
+			vient_de = form.cleaned_data['vient_de'],
+			)
+		etudiant_list = Etudiant.objects.filter(genre=genre)
+		return render(request, success_url,{'etudiant_list': etudiants, 'maintenant': timezone.now()})		
+
+#-----------------------------------------------------------------------------
+#  Etudiant search a la main
+
+def search_form(request):
+	return render(request,'Apply/search_form.html')
+
+
+def search_result(request):
+	if request.POST['nom']:
+		etudiants = Etudiant.objects.filter(nom = request.POST['nom'])
+		if request.POST['prenom']:
+			etudiants = etudiants.filter(prenom = request.POST['prenom'])	
+		return render(request, 'Apply/etudiant_list.html',{'etudiant_list': etudiants, 'maintenant': timezone.now(),'titre' : 'Résultat de la recherche'})
+	else:
+		message = 'Vous n\'avez pas indiqué de nom.'
+		return HttpResponse(message)
 
 #-----------------------------------------------------------------------------
 #  Etudiant create
@@ -58,10 +82,10 @@ class EtudiantCreateView(CreateView):
 			genre = form.cleaned_data['genre'],
 			nom = form.cleaned_data['nom'],
 			prenom = form.cleaned_data['prenom'],
-    		date_naissance =  form.cleaned_data['date_naissance'],
-    		adresse = form.cleaned_data['adresse'],
-    		email = form.cleaned_data['email'],
-    		vient_de = form.cleaned_data['vient_de'],
+			date_naissance =  form.cleaned_data['date_naissance'],
+			adresse = form.cleaned_data['adresse'],
+			email = form.cleaned_data['email'],
+			vient_de = form.cleaned_data['vient_de'],
 			)
 		etudiant.save()
 
@@ -141,10 +165,10 @@ class CandidatureCreateView(CreateView):
 			etudiant = form.cleaned_data['etudiant'],
 			date_demande= form.cleaned_data['date_demande'],
 			demande = form.cleaned_data['demande'],
-    		reponse =  form.cleaned_data['reponse'],
-    		confirmation = form.cleaned_data['confirmation'],
-    		reponse_donnee_par = form.cleaned_data['reponse_donnee_par'],
-    		date_reponse= form.cleaned_data['date_reponse'],
+			reponse =  form.cleaned_data['reponse'],
+			confirmation = form.cleaned_data['confirmation'],
+			reponse_donnee_par = form.cleaned_data['reponse_donnee_par'],
+			date_reponse= form.cleaned_data['date_reponse'],
 			)
 		etudiant.save()
 

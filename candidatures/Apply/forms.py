@@ -12,7 +12,7 @@ class CandidatureForm(forms.ModelForm):
 		model = Candidature
 		fields = '__all__'
 
-class PortailForm(forms.ModelForm):
+class ShortEtudiantForm(forms.ModelForm):
 	class Meta:
 		model = Etudiant
 		fields =('nom', 'prenom')

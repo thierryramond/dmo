@@ -12,8 +12,8 @@ $(document).ready(function()
 
 
 <div class="vcontainer">
-<h1>Liste des Etudiants</h1>
-{{maintenant}}
+<h1>{{titre}}</h1>
+{{ maintenant }}
 <br><br>
 
 <table id="myTable">
@@ -30,7 +30,7 @@ $(document).ready(function()
 </tr>
 </thead>
 <tbody>
-{% for item in object_list %}
+{% for item in etudiant_list %}
 <tr>
     <td style="width:20px;"> {{ item.genre }}</td>
   	<td style="width:150px;"><a href="{% url 'etudiant_detail' pk=item.id %}">{{ item.nom }}</a></td>
